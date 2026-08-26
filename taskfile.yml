@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+# vars:
+#   GREETING: Hello, world!
+
+tasks:
+  default: task --list
+  i: npm install
+  d: npm run dev
+  c: npm run check -- --fix
+  f: npm run format -- --fix
+  r: npm run generate-routes
+  pub: npm run build
+  zip: git archive --format=zip --output=repo.zip HEAD
