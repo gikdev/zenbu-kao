@@ -13,19 +13,19 @@ export const ContactItemCard = (p: { item: ContactItem }) => {
         <a
           className={className}
           href={url}
-          rel="noopener noreferrer"
-          target="_blank"
+          rel='noopener noreferrer'
+          target='_blank'
           title={title}
         >
           {typeof IconOrPath === 'string' ? (
-            <img alt="" src={IconOrPath} className="size-6" />
+            <img alt='' src={IconOrPath} className='size-6' />
           ) : (
-            <IconOrPath className="size-6" />
+            <IconOrPath className='size-6' />
           )}
         </a>
       </TooltipTrigger>
 
-      <TooltipContent side="bottom">
+      <TooltipContent side='bottom'>
         <p>{title}</p>
       </TooltipContent>
     </Tooltip>

@@ -1,11 +1,12 @@
-import { SpinnerGapIcon } from '@phosphor-icons/react'
-import type { ReactNode } from 'react'
+import { type Icon, SpinnerGapIcon } from '@phosphor-icons/react'
 
 import { useFormContext } from '.'
 
 interface SimpleSubmitBtnProps {
-  children: ReactNode
+  icon: Icon
+  title: string
   className: string
+  disabled?: boolean
 }
 
 export function SimpleSubmitBtn(p: SimpleSubmitBtnProps) {
@@ -15,16 +16,18 @@ export function SimpleSubmitBtn(p: SimpleSubmitBtnProps) {
     <form.Subscribe selector={s => [s.canSubmit, s.isSubmitting]}>
       {([canSubmit, isSubmitting]) => (
         <button
-          type="button"
+          type='button'
           className={p.className}
           onClick={() => form.handleSubmit()}
-          disabled={!canSubmit || isSubmitting}
+          disabled={!canSubmit || isSubmitting || p.disabled}
         >
           {isSubmitting ? (
-            <SpinnerGapIcon size={24} className="animate-spin" />
+            <SpinnerGapIcon size={20} className='animate-spin' />
           ) : (
-            p.children
+            <p.icon size={20} />
           )}
+
+          <span>{isSubmitting ? 'در حال بارگذاری...' : p.title}</span>
         </button>
       )}
     </form.Subscribe>

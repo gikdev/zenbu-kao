@@ -7,7 +7,7 @@ export function FieldMeta({ meta }: { meta: AnyFieldMeta }) {
 
   if (meta.isValidating) {
     return (
-      <p dir="auto" className="text-xs text-mist-500">
+      <p dir='auto' className='text-xs text-mist-500'>
         ...
       </p>
     )
@@ -15,10 +15,10 @@ export function FieldMeta({ meta }: { meta: AnyFieldMeta }) {
 
   if (!meta.isValid && errorMsgs.some) {
     return (
-      <div dir="auto" className="text-xs text-red-500">
+      <div dir='auto' className='text-xs text-red-500'>
         {errorMsgs.value.map((msg, i) => (
           // biome-ignore lint/suspicious/noArrayIndexKey: ___
-          <p dir="auto" key={i}>
+          <p dir='auto' key={i}>
             {msg}
           </p>
         ))}
@@ -26,5 +26,5 @@ export function FieldMeta({ meta }: { meta: AnyFieldMeta }) {
     )
   }
 
-  return <p className="invisible text-xs">&nbsp;</p>
+  return <p className='invisible text-xs'>&nbsp;</p>
 }
