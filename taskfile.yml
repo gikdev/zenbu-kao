@@ -2,9 +2,6 @@
 
 version: '3'
 
-# vars:
-#   GREETING: Hello, world!
-
 tasks:
   default: task --list
   i: npm install
@@ -14,3 +11,6 @@ tasks:
   r: npm run generate-routes
   pub: npm run build
   zip: git archive --format=zip --output=repo.zip HEAD
+
+  # AddShadcnComponent
+  asc: npm run shadcn -- add {{.CLI_ARGS}}

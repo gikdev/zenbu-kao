@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-router'
 import type { PropsWithChildren } from 'react'
 import appCss from '#/common/styles.css?url'
+import { TooltipProvider } from '#/common/ui/tooltip'
 import { Devtools } from '#/features/devtools/Devtools'
 
 interface MyRouterContext {
@@ -35,7 +36,7 @@ function RootDocument(p: PropsWithChildren) {
       </head>
 
       <body>
-        {p.children}
+        <TooltipProvider>{p.children}</TooltipProvider>
         <Devtools />
         <Scripts />
       </body>

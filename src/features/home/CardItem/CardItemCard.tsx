@@ -29,8 +29,8 @@ export const CardItemCard = (p: { item: CardItem }) =>
 
 export const CardItemCardContent = (p: { item: CardItem }) => (
   <>
-    <ItemMedia variant="icon" className='my-auto'>
-      <p.item.icon className='size-6' />
+    <ItemMedia variant="icon" className="my-auto">
+      <p.item.icon className="size-6" />
     </ItemMedia>
 
     <ItemContent>
