@@ -38,6 +38,7 @@
     "formatter": {
       "arrowParentheses": "asNeeded",
       "quoteStyle": "single",
+      "jsxQuoteStyle": "double",
       "semicolons": "asNeeded"
     }
   }

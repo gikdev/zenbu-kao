@@ -1,39 +1,29 @@
-import type { ChangeEventHandler } from 'react'
+import { Textarea } from '#/common/ui/textarea'
 import { Field, FieldError, FieldLabel } from '@/common/ui/field'
-import { Input } from '@/common/ui/input'
 import { useFieldContext } from '.'
 import { FieldMeta } from './FieldMeta'
 
-interface SingleLineInputProps {
+interface MultiLineInputProps {
   title: string
-  type?: string
   disabled?: boolean
 }
 
-export function SingleLineInput(p: SingleLineInputProps) {
+export function MultiLineInput(p: MultiLineInputProps) {
   const field = useFieldContext<string>()
   const value = field.state.value || ''
-
-  const handleChange: ChangeEventHandler<
-    HTMLInputElement,
-    HTMLInputElement
-  > = e => {
-    field.handleChange(e.target.value || '')
-  }
 
   return (
     <Field>
       <FieldLabel htmlFor={field.name}>{p.title}</FieldLabel>
 
-      <Input
+      <Textarea
         id={field.name}
         name={field.name}
-        type={p.type}
         dir="auto"
         disabled={p.disabled}
         value={value}
         onBlur={field.handleBlur}
-        onChange={handleChange}
+        onChange={e => field.handleChange(e.target.value)}
       />
 
       <FieldError>
