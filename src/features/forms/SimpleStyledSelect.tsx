@@ -38,7 +38,7 @@ export function SimpleStyledSelect(p: SimpleStyledSelectProps) {
         value={value}
         onValueChange={value => field.handleChange(value || '')}
       >
-        <SelectTrigger className="w-full">
+        <SelectTrigger className='w-full'>
           <SelectValue />
         </SelectTrigger>
 

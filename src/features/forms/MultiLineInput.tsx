@@ -19,7 +19,7 @@ export function MultiLineInput(p: MultiLineInputProps) {
       <Textarea
         id={field.name}
         name={field.name}
-        dir="auto"
+        dir='auto'
         disabled={p.disabled}
         value={value}
         onBlur={field.handleBlur}

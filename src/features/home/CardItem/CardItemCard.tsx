@@ -13,12 +13,12 @@ import type { CardItem } from './CardItem'
 
 export const CardItemCard = (p: { item: CardItem }) =>
   p.item.isWip ? (
-    <Item variant="outline" className="opacity-60 cursor-not-allowed">
+    <Item variant='outline' className='opacity-60 cursor-not-allowed'>
       <CardItemCardContent item={p.item} />
     </Item>
   ) : (
     <Item
-      variant="outline"
+      variant='outline'
       render={
         <Link {...p.item.linkOptions}>
           <CardItemCardContent item={p.item} />
@@ -29,22 +29,22 @@ export const CardItemCard = (p: { item: CardItem }) =>
 
 export const CardItemCardContent = (p: { item: CardItem }) => (
   <>
-    <ItemMedia variant="icon" className="my-auto">
-      <p.item.icon className="size-6" />
+    <ItemMedia variant='icon' className='my-auto'>
+      <p.item.icon className='size-6' />
     </ItemMedia>
 
     <ItemContent>
-      <ItemTitle className="flex items-center gap-2">
+      <ItemTitle className='flex items-center gap-2'>
         <span>{p.item.title}</span>
-        {p.item.isWip && <Badge variant="secondary">به زودی</Badge>}
+        {p.item.isWip && <Badge variant='secondary'>به زودی</Badge>}
       </ItemTitle>
-      <ItemDescription className="flex items-center gap-2">
+      <ItemDescription className='flex items-center gap-2'>
         <span>{p.item.description}</span>
       </ItemDescription>
     </ItemContent>
 
     <ItemActions>
-      <CaretRightIcon mirrored className="size-4" />
+      <CaretRightIcon mirrored className='size-4' />
     </ItemActions>
   </>
 )

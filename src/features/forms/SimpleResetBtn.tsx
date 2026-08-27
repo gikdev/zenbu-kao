@@ -12,7 +12,7 @@ export function SimpleResetBtn(p: SimpleResetBtnProps) {
 
   return (
     <button
-      type="button"
+      type='button'
       disabled={p.disabled}
       className={p.className}
       onClick={() => form.reset()}

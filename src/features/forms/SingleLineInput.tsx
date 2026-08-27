@@ -29,7 +29,7 @@ export function SingleLineInput(p: SingleLineInputProps) {
         id={field.name}
         name={field.name}
         type={p.type}
-        dir="auto"
+        dir='auto'
         disabled={p.disabled}
         value={value}
         onBlur={field.handleBlur}

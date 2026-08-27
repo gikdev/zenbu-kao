@@ -9,20 +9,20 @@ const CONTACT_PAGE_DESC = `
 `
 
 export const ContactPage = () => (
-  <div className="py-8 px-4 gap-4 min-h-dvh flex flex-col justify-center">
-    <div className="max-w-lg w-full mx-auto flex flex-col gap-8 items-start justify-start">
-      <div className="flex items-start gap-2 justify-start w-full">
+  <div className='py-8 px-4 gap-4 min-h-dvh flex flex-col justify-center'>
+    <div className='max-w-lg w-full mx-auto flex flex-col gap-8 items-start justify-start'>
+      <div className='flex items-start gap-2 justify-start w-full'>
         <Link
-          to="/"
+          to='/'
           className={buttonVariants({ size: 'icon-lg', variant: 'ghost' })}
         >
-          <ArrowLeftIcon mirrored className="size-6" />
+          <ArrowLeftIcon mirrored className='size-6' />
         </Link>
 
-        <h1 className="text-3xl font-bold">راه‌های ارتباطی</h1>
+        <h1 className='text-3xl font-bold'>راه‌های ارتباطی</h1>
       </div>
 
-      <p className="text-muted-foreground w-full">{CONTACT_PAGE_DESC}</p>
+      <p className='text-muted-foreground w-full'>{CONTACT_PAGE_DESC}</p>
 
       <ContactItemsSection />
 

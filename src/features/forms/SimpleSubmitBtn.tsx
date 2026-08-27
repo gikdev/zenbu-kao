@@ -16,13 +16,13 @@ export function SimpleSubmitBtn(p: SimpleSubmitBtnProps) {
     <form.Subscribe selector={s => [s.canSubmit, s.isSubmitting]}>
       {([canSubmit, isSubmitting]) => (
         <button
-          type="button"
+          type='button'
           className={p.className}
           onClick={() => form.handleSubmit()}
           disabled={!canSubmit || isSubmitting || p.disabled}
         >
           {isSubmitting ? (
-            <SpinnerGapIcon size={20} className="animate-spin" />
+            <SpinnerGapIcon size={20} className='animate-spin' />
           ) : (
             <p.icon size={20} />
           )}

@@ -44,9 +44,9 @@ export const ContactForm = (p: ContactFormProps) => {
   return (
     <form.AppForm>
       <Card className={cardStyles}>
-        <CardHeader className="">
-          <CardTitle className="flex items-start gap-2">
-            <MailboxIcon size={20} weight="fill" />
+        <CardHeader className=''>
+          <CardTitle className='flex items-start gap-2'>
+            <MailboxIcon size={20} weight='fill' />
 
             <span>ارسال پیام</span>
 
@@ -58,34 +58,34 @@ export const ContactForm = (p: ContactFormProps) => {
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="">
+        <CardContent className=''>
           <form.AppField
-            name="name"
+            name='name'
             children={field => (
-              <field.SingleLineInput disabled={isComingSoon} title="نام" />
+              <field.SingleLineInput disabled={isComingSoon} title='نام' />
             )}
           />
 
           <form.AppField
-            name="title"
+            name='title'
             children={field => (
-              <field.SingleLineInput disabled={isComingSoon} title="موضوع" />
+              <field.SingleLineInput disabled={isComingSoon} title='موضوع' />
             )}
           />
 
           <form.AppField
-            name="body"
+            name='body'
             children={field => (
-              <field.MultiLineInput disabled={isComingSoon} title="پیام" />
+              <field.MultiLineInput disabled={isComingSoon} title='پیام' />
             )}
           />
 
           <form.AppField
-            name="contactMethod"
+            name='contactMethod'
             children={field => (
               <field.SimpleStyledSelect
                 disabled={isComingSoon}
-                title="چطوری جواب بدم؟"
+                title='چطوری جواب بدم؟'
                 items={contactMethods}
               />
             )}
@@ -96,7 +96,7 @@ export const ContactForm = (p: ContactFormProps) => {
             children={method =>
               method !== 'none' ? (
                 <form.AppField
-                  name="contactValue"
+                  name='contactValue'
                   children={field => (
                     <field.SingleLineInput
                       disabled={isComingSoon}
@@ -109,7 +109,7 @@ export const ContactForm = (p: ContactFormProps) => {
           />
         </CardContent>
 
-        <CardFooter className="gap-1">
+        <CardFooter className='gap-1'>
           <form.SimpleResetBtn
             disabled={isComingSoon}
             className={buttonVariants({
@@ -121,7 +121,7 @@ export const ContactForm = (p: ContactFormProps) => {
           <form.SimpleSubmitBtn
             disabled={isComingSoon}
             icon={MailboxIcon}
-            title="پیام بده!"
+            title='پیام بده!'
             className={buttonVariants({
               variant: 'default',
               size: 'lg',
