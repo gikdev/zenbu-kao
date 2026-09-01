@@ -28,7 +28,7 @@ export const contactItems: ContactItem[] = [
   {
     id: id(),
     title: 'گیت‌هاب',
-    url: 'https://github.com/gidkev',
+    url: 'https://github.com/gikdev',
     IconOrPath: GithubLogoIcon,
   },
   {
