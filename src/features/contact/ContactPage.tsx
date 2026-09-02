@@ -13,7 +13,7 @@ export const ContactPage = () => (
     <div className='max-w-lg w-full mx-auto flex flex-col gap-8 items-start justify-start'>
       <div className='flex items-start gap-2 justify-start w-full'>
         <Link
-          to='/'
+          to='/bahrami'
           className={buttonVariants({ size: 'icon-lg', variant: 'ghost' })}
         >
           <ArrowLeftIcon mirrored className='size-6' />

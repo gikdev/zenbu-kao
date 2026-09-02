@@ -4,6 +4,7 @@
 @import "@fontsource-variable/vazirmatn";
 @import "@fontsource/jetbrains-mono";
 @import "@fontsource/klee-one";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 

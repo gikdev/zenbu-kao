@@ -1,4 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { HomePage } from '#/features/home/HomePage'
+import { createFileRoute, Navigate } from '@tanstack/react-router'
+import { useIsLoggedIn } from '#/features/auth/store'
 
-export const Route = createFileRoute('/')({ component: HomePage })
+export const Route = createFileRoute('/')({
+  component: () => (
+    <Navigate to={useIsLoggedIn() ? '/dashboard' : '/bahrami'} />
+  ),
+})

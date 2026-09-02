@@ -3,14 +3,15 @@
 version: '3'
 
 tasks:
-  default: task --list
+  default: task --list-all
   i: npm install
+  t: npm run tsc -- -b
   d: npm run dev
   c: npm run check -- --fix
   f: npm run format -- --fix
   r: npm run generate-routes
-  pub: npm run build
-  zip: git archive --format=zip --output=repo.zip HEAD
+  p: npm run build
+  z: git archive --format=zip --output=repo.zip HEAD
 
   # AddShadcnComponent
-  asc: npm run shadcn -- add {{.CLI_ARGS}}
+  a: npm run shadcn -- add {{.CLI_ARGS}}
