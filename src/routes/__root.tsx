@@ -9,8 +9,8 @@ import appCss from '#/common/styles.css?url'
 import { Toaster } from '#/common/ui/toast'
 import { TooltipProvider } from '#/common/ui/tooltip'
 import { ClientConfigurator } from '#/features/api/ClientConfigurator'
-import { Devtools } from '#/features/devtools/Devtools'
 import type { getIsLoggedIn } from '#/features/auth/store'
+import { Devtools } from '#/features/devtools/Devtools'
 
 interface MyRouterContext {
   queryClient: QueryClient

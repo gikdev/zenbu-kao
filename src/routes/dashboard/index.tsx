@@ -13,7 +13,7 @@ import { useLogOut } from '#/features/auth/useLogOut'
 
 export const Route = createFileRoute('/dashboard/')({
   component: RouteComponent,
-  beforeLoad: (p) => {
+  beforeLoad: p => {
     if (!p.context.getIsLoggedIn()) {
       throw redirect({ to: '/bahrami' })
     }

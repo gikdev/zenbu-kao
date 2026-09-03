@@ -2,7 +2,6 @@
 
 import { ArrowLeftIcon, SignInIcon } from '@phosphor-icons/react'
 import { Link, useNavigate } from '@tanstack/react-router'
-import { Badge } from '#/common/ui/badge'
 import { buttonVariants } from '#/common/ui/button'
 import { Field, FieldDescription } from '#/common/ui/field'
 import { toast } from '#/common/ui/toast'
@@ -44,9 +43,7 @@ export default function LoginPage() {
         <form.AppForm>
           <SignInIcon className='size-6' />
 
-          <h1 className='text-xl font-bold'>
-            ورود به سایت
-          </h1>
+          <h1 className='text-xl font-bold'>ورود به سایت</h1>
 
           <FieldDescription>
             <span>حساب نداری؟ </span>

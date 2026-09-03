@@ -3,7 +3,7 @@ import RegisterPage from '#/features/auth/RegisterPage'
 
 export const Route = createFileRoute('/register')({
   component: RegisterPage,
-  beforeLoad: (p) => {
+  beforeLoad: p => {
     if (p.context.getIsLoggedIn()) {
       throw redirect({ to: '/dashboard' })
     }

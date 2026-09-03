@@ -2,7 +2,6 @@
 
 import { ArrowLeftIcon, UserPlusIcon } from '@phosphor-icons/react'
 import { Link, useNavigate } from '@tanstack/react-router'
-import { Badge } from '#/common/ui/badge'
 import { buttonVariants } from '#/common/ui/button'
 import { Field, FieldDescription } from '#/common/ui/field'
 import { toast } from '#/common/ui/toast'
@@ -49,9 +48,7 @@ export default function RegisterPage() {
         <form.AppForm>
           <UserPlusIcon className='size-6' />
 
-          <h1 className='text-xl font-bold'>
-            ثبت‌نام در سایت
-          </h1>
+          <h1 className='text-xl font-bold'>ثبت‌نام در سایت</h1>
 
           <FieldDescription>
             <span>قبلاً حساب دارید؟ </span>
