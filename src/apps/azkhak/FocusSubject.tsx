@@ -7,11 +7,11 @@ import { Button } from '#/common/ui/button'
 import { Input } from '#/common/ui/input'
 import { cn } from '#/common/utils'
 import { DestructiveBtn } from './DestructiveBtn'
-import { actions, useViewSubject } from './store'
+import { azkhakActions, useSubject } from './store'
 
-export const Subject = () => {
+export const FocusSubject = () => {
   const [isEditing, setEditing] = useState(false)
-  const subject = useViewSubject()
+  const subject = useSubject()
   const hasSubject = !!subject
   const placeholder = 'روی چی می‌خوای تمرکز کنی؟'
   const subjectClass = cn(
@@ -20,7 +20,7 @@ export const Subject = () => {
   )
 
   const handleEditing = (e: FocusEvent<HTMLInputElement, Element>) => {
-    actions.setSubject(e.target.value)
+    azkhakActions.setSubject(e.target.value)
     setEditing(false)
   }
 
@@ -36,9 +36,9 @@ export const Subject = () => {
     <div className='flex items-center gap-2'>
       <DestructiveBtn
         disabled={!hasSubject}
-        defaultVariant='ghost'
+        variant='ghost'
         icon={TrashSimpleIcon}
-        onClick={() => actions.setSubject('')}
+        onClick={() => azkhakActions.setSubject('')}
         size='icon-lg'
         iconSize='size-6'
         title='حذف'

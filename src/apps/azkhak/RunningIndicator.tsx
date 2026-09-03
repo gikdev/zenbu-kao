@@ -1,8 +1,8 @@
 import { HourglassSimpleIcon } from '@phosphor-icons/react'
-import { useViewIsRunning } from './store'
+import { useIsRunning } from './store'
 
 export const RunningIndicator = () => {
-  const isRunning = useViewIsRunning()
+  const isRunning = useIsRunning()
 
   return (
     <HourglassSimpleIcon

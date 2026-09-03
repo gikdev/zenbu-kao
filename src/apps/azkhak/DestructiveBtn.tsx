@@ -15,13 +15,13 @@ type BtnVariant = VariantProps<typeof buttonVariants>['variant']
 
 export const DestructiveBtn = (p: {
   size?: BtnSize
-  defaultVariant?: BtnVariant
+  variant?: BtnVariant
   title?: string
   icon?: Icon
   iconSize?: string
   disabled?: boolean
   onClick?: () => void
-  doStretch?: boolean
+  fullWidth?: boolean
 }) => {
   const isIcon = p.size?.includes('icon')
   const [isConfirmation, setConfirmation] = useState(false)
@@ -29,7 +29,7 @@ export const DestructiveBtn = (p: {
   const FinalIcon = p.icon || TrashSimpleIcon
 
   return isConfirmation ? (
-    <ButtonGroup className={p.doStretch ? 'w-full *:flex-1' : ''}>
+    <ButtonGroup className={p.fullWidth ? 'w-full *:flex-1' : ''}>
       <RenderTooltip tooltip='تایید'>
         <Button
           size={p.size}
@@ -59,7 +59,7 @@ export const DestructiveBtn = (p: {
     <RenderTooltip tooltip={finalTitle}>
       <Button
         size={p.size}
-        variant={p.defaultVariant}
+        variant={p.variant}
         disabled={p.disabled}
         onClick={() => setConfirmation(true)}
       >

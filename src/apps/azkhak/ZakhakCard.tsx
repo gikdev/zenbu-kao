@@ -1,4 +1,4 @@
-import { HandIcon, RobotIcon, TrashSimpleIcon } from '@phosphor-icons/react'
+import { HandIcon, TimerIcon, TrashSimpleIcon } from '@phosphor-icons/react'
 import {
   Item,
   ItemActions,
@@ -8,7 +8,7 @@ import {
 } from '#/common/ui/item'
 import { DestructiveBtn } from './DestructiveBtn'
 import { formatToHoursAndMinutes } from './formatToHoursAndMinutes'
-import { actions } from './store'
+import { azkhakActions } from './store'
 import type { ZakhakEntry } from './ZakhakEntry'
 
 export const ZakhakCard = (p: {
@@ -18,7 +18,7 @@ export const ZakhakCard = (p: {
 }) => (
   <Item variant='outline' size='xs'>
     <ItemMedia>
-      {p.type === 'auto' && <RobotIcon className='size-6 text-amber-400' />}
+      {p.type === 'timer' && <TimerIcon className='size-6 text-amber-400' />}
 
       {p.type === 'manual' && <HandIcon className='size-6 text-sky-400' />}
     </ItemMedia>
@@ -33,11 +33,11 @@ export const ZakhakCard = (p: {
 
     <ItemActions>
       <DestructiveBtn
-        defaultVariant='ghost'
+        variant='ghost'
         icon={TrashSimpleIcon}
         title='حذف'
         size='icon'
-        onClick={() => actions.deleteEntry(p.id)}
+        onClick={() => azkhakActions.deleteEntry(p.id)}
       />
     </ItemActions>
   </Item>

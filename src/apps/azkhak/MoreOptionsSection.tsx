@@ -15,8 +15,8 @@ import {
 } from '#/common/ui/drawer'
 import { DestructiveBtn } from './DestructiveBtn'
 import { DownloadReportBtn } from './DownloadReportBtn'
-import { actions } from './store'
-import { ZakhaksHistorySection } from './ZakhaksHistorySection'
+import { HistorySection } from './HistorySection'
+import { azkhakActions } from './store'
 
 export const MoreOptionsSection = () => {
   const TITLE = 'گزینه‌های بیشتر'
@@ -43,18 +43,18 @@ export const MoreOptionsSection = () => {
           </DrawerDescription>
         </DrawerHeader>
 
-        <ZakhaksHistorySection />
+        <HistorySection />
 
         <DrawerFooter dir='rtl'>
           <DownloadReportBtn />
 
           <DestructiveBtn
-            defaultVariant='destructive'
+            variant='destructive'
             icon={ArrowClockwiseIcon}
-            onClick={() => actions.reset()}
+            onClick={() => azkhakActions.reset()}
             size='default'
             title='ریست'
-            doStretch
+            fullWidth
           />
 
           <DrawerClose render={<Button variant='outline' ref={closeBtnRef} />}>

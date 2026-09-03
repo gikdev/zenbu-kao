@@ -29,8 +29,8 @@ const getDurationInMinutes = (startIso: string, endIso: string): number => {
 
 /** Predicate to check if an entry is a currently running auto timer. */
 const isRunningEntry = (entry: ZakhakEntry): boolean =>
-  entry.type === 'auto' &&
-  entry.endAt === null &&
+  entry.type === 'timer' &&
+  entry.endedAt === null &&
   entry.durationInMinutes === null
 
 // ====================
@@ -57,30 +57,30 @@ const azkhakStore = createStore(initialState, a => ({
         {
           id: generateShortId(),
           createdAt: new Date().toISOString(),
-          type: 'auto',
-          endAt: null,
+          type: 'timer',
+          endedAt: null,
           durationInMinutes: null,
         },
       ],
     })),
 
-  endTimer: () =>
+  stopTimer: () =>
     a.setState(p => {
       const running = p.zakhaks.find(isRunningEntry)
       if (!running) return p
 
-      const endAt = new Date().toISOString()
-      const durationInMinutes = getDurationInMinutes(running.createdAt, endAt)
+      const endedAt = new Date().toISOString()
+      const durationInMinutes = getDurationInMinutes(running.createdAt, endedAt)
 
       return {
         ...p,
         zakhaks: p.zakhaks.map(z =>
-          z.id === running.id ? { ...z, endAt, durationInMinutes } : z,
+          z.id === running.id ? { ...z, endedAt, durationInMinutes } : z,
         ),
       }
     }),
 
-  addManual: (durationInMinutes: number) =>
+  addManualEntry: (durationInMinutes: number) =>
     a.setState(p => ({
       ...p,
       zakhaks: [
@@ -89,7 +89,7 @@ const azkhakStore = createStore(initialState, a => ({
           id: generateShortId(),
           createdAt: new Date().toISOString(),
           type: 'manual',
-          endAt: null,
+          endedAt: null,
           durationInMinutes,
         },
       ],
@@ -104,7 +104,7 @@ const azkhakStore = createStore(initialState, a => ({
   reset: () => a.setState(() => emptyState),
 }))
 
-export const actions = azkhakStore.actions
+export const azkhakActions = azkhakStore.actions
 
 // ====================
 
@@ -120,15 +120,14 @@ azkhakStore.subscribe(() => {
 // ====================
 
 /** @returns {boolean} True if there is an active, running auto timer. */
-export const useViewIsRunning = (): boolean =>
+export const useIsRunning = (): boolean =>
   useSelector(azkhakStore, s => s.zakhaks.some(isRunningEntry))
 
 /** @returns {string} The current sticky note subject. */
-export const useViewSubject = (): string =>
-  useSelector(azkhakStore, s => s.subject)
+export const useSubject = (): string => useSelector(azkhakStore, s => s.subject)
 
 /** @returns {ZakhakEntry[]} The full list of saved time entries. */
-export const useViewHistory = (): ZakhakEntry[] =>
+export const useHistory = (): ZakhakEntry[] =>
   useSelector(azkhakStore, s => s.zakhaks)
 
 /**
@@ -137,8 +136,8 @@ export const useViewHistory = (): ZakhakEntry[] =>
  *
  * @returns {number} Total minutes elapsed.
  */
-export function useViewTotalTime(): number {
-  const isRunning = useViewIsRunning()
+export function useTotalTime(): number {
+  const isRunning = useIsRunning()
   const zakhaks = useSelector(azkhakStore, s => s.zakhaks)
   const [, forceUpdate] = useState(0)
 

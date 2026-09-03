@@ -15,7 +15,7 @@ import {
 } from '#/common/ui/drawer'
 import { Field, FieldLabel } from '#/common/ui/field'
 import { Input } from '#/common/ui/input'
-import { actions } from './store'
+import { azkhakActions } from './store'
 
 export function ManualTimeSection() {
   const TITLE = 'زمان دستی'
@@ -28,7 +28,7 @@ export function ManualTimeSection() {
   const add = (isPositive: boolean) => () => {
     const num = minutesInputRef.current?.valueAsNumber || 0
 
-    actions.addManual(isPositive ? +num : -num)
+    azkhakActions.addManualEntry(isPositive ? +num : -num)
 
     closeBtnRef.current?.click()
   }

@@ -2,18 +2,18 @@ import { DownloadSimpleIcon } from '@phosphor-icons/react'
 import { stringify } from 'yaml'
 import { Button } from '#/common/ui/button'
 import { formatToHoursAndMinutes } from './formatToHoursAndMinutes'
-import { useViewHistory, useViewSubject, useViewTotalTime } from './store'
+import { useHistory, useSubject, useTotalTime } from './store'
 
 /**
  * Hook that returns a method to download the current report as a YAML file.
- * Uses the existing `useViewSubject`, `useViewHistory`, and `useViewTotalTime` hooks.
+ * Uses the existing `useSubject`, `useHistory`, and `useTotalTime` hooks.
  *
  * @returns {() => void} A function that triggers the download.
  */
 export const useExportReport = (): (() => void) => {
-  const subject = useViewSubject()
-  const zakhaks = useViewHistory()
-  const totalMinutes = useViewTotalTime()
+  const subject = useSubject()
+  const zakhaks = useHistory()
+  const totalMinutes = useTotalTime()
 
   return () => {
     const exportData = {
@@ -24,7 +24,7 @@ export const useExportReport = (): (() => void) => {
       entries: zakhaks.map(entry => ({
         type: entry.type,
         startedAt: entry.createdAt,
-        endedAt: entry.endAt ?? null,
+        endedAt: entry.endedAt ?? null,
         durationInMinutes: entry.durationInMinutes,
       })),
     }

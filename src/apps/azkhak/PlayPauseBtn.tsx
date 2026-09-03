@@ -2,10 +2,10 @@ import { PauseIcon, PlayIcon } from '@phosphor-icons/react'
 import { RenderTooltip } from '#/common/helpers/RenderTooltip'
 import { Button } from '#/common/ui/button'
 import { cn } from '#/common/utils'
-import { actions, useViewIsRunning } from './store'
+import { azkhakActions, useIsRunning } from './store'
 
 export const PlayPauseBtn = () => {
-  const isRunning = useViewIsRunning()
+  const isRunning = useIsRunning()
 
   const PlayPauseIcon = isRunning ? PauseIcon : PlayIcon
   const playPauseTooltip = isRunning ? 'توقف' : 'شروع'
@@ -13,9 +13,9 @@ export const PlayPauseBtn = () => {
 
   const handlePlayPause = () => {
     if (isRunning) {
-      actions.endTimer()
+      azkhakActions.stopTimer()
     } else {
-      actions.startTimer()
+      azkhakActions.startTimer()
     }
   }
 

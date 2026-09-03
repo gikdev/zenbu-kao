@@ -1,7 +1,7 @@
 import { ZakhakCard } from './ZakhakCard'
 import type { ZakhakEntry } from './ZakhakEntry'
 
-export const ZakhaksHistory = (p: { zakhaks: ZakhakEntry[] }) =>
+export const EntryHistory = (p: { zakhaks: ZakhakEntry[] }) =>
   [...p.zakhaks]
     .reverse()
     .map(z => (
