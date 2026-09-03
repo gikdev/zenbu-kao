@@ -2,20 +2,7 @@ import { createStore, useSelector } from '@tanstack/react-store'
 import { useEffect, useState } from 'react'
 import { generateShortId } from '#/common/utils/generateShortId'
 import { keys, StorageEntry, storage } from '#/features/persistence'
-
-/**
- * **زخک**: زمان خالص کاری
- * - manual: endAt == null && durationInMinutes == number
- * - auto & started: endAt == null && durationInMinutes == null
- * - auto & ended: endAt == string && durationInMinutes == number (calculated)
- */
-interface ZakhakEntry {
-  id: string
-  createdAt: string
-  type: 'manual' | 'auto'
-  endAt: string | null
-  durationInMinutes: number | null
-}
+import type { ZakhakEntry } from './ZakhakEntry'
 
 interface AzkhakStoreShape {
   subject: string

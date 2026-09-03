@@ -2,7 +2,6 @@ import { ArrowClockwiseIcon, ListIcon, XIcon } from '@phosphor-icons/react'
 import { useRef } from 'react'
 import { RenderTooltip } from '#/common/helpers/RenderTooltip'
 import { useIsMobile } from '#/common/helpers/useIsMobile'
-import { Badge } from '#/common/ui/badge'
 import { Button } from '#/common/ui/button'
 import {
   Drawer,
@@ -17,6 +16,7 @@ import {
 import { DestructiveBtn } from './DestructiveBtn'
 import { DownloadReportBtn } from './DownloadReportBtn'
 import { actions } from './store'
+import { ZakhaksHistorySection } from './ZakhaksHistorySection'
 
 export const MoreOptionsSection = () => {
   const TITLE = 'گزینه‌های بیشتر'
@@ -43,10 +43,7 @@ export const MoreOptionsSection = () => {
           </DrawerDescription>
         </DrawerHeader>
 
-        <div className='p-4 flex flex-col gap-4' dir='rtl'>
-          {/* TODO: Display history, ZakhakEntry[] */}
-          <Badge>به زودی</Badge>
-        </div>
+        <ZakhaksHistorySection />
 
         <DrawerFooter dir='rtl'>
           <DownloadReportBtn />
