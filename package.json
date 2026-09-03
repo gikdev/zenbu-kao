@@ -6,15 +6,14 @@
     "#/*": "./src/*"
   },
   "scripts": {
-    "tsc": "tsc",
-    "build": "vite build",
-    "check": "biome check",
     "dev": "vite dev --port 3000",
-    "format": "biome format",
+    "build": "vite build",
     "generate-routes": "tsr generate",
-    "lint": "biome lint",
-    "preview": "vite preview",
+    "tsc": "tsc",
+    "biome": "biome",
+    "vite": "vite",
     "shadcn": "shadcn",
+    "openapi-ts": "openapi-ts",
     "start": "node .output/server/index.mjs"
   },
   "dependencies": {
@@ -22,7 +21,6 @@
     "@fontsource-variable/vazirmatn": "^5.3.0",
     "@fontsource/jetbrains-mono": "^5.3.0",
     "@fontsource/klee-one": "^5.3.0",
-    "@hey-api/openapi-ts": "^0.99.0",
     "@phosphor-icons/react": "^2.1.10",
     "@t3-oss/env-core": "^0.13.10",
     "@tailwindcss/vite": "^4.1.18",
@@ -56,6 +54,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.5",
+    "@hey-api/openapi-ts": "0.99.0",
     "@tailwindcss/typography": "^0.5.20",
     "@tanstack/devtools-event-client": "^0.5.0",
     "@tanstack/devtools-vite": "^0.8.5",

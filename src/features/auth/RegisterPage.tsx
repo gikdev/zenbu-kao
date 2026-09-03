@@ -2,11 +2,11 @@
 
 import { ArrowLeftIcon, UserPlusIcon } from '@phosphor-icons/react'
 import { Link } from '@tanstack/react-router'
+import { Badge } from '#/common/ui/badge'
 import { buttonVariants } from '#/common/ui/button'
 import { Field, FieldDescription } from '#/common/ui/field'
 import { useAppForm } from '../forms'
 import { Agreement } from './Agreement'
-import { Badge } from '#/common/ui/badge'
 
 export default function RegisterPage() {
   const form = useAppForm({
@@ -30,7 +30,9 @@ export default function RegisterPage() {
         <form.AppForm>
           <UserPlusIcon className='size-6' />
 
-          <h1 className='text-xl font-bold'>ثبت‌نام در سایت <Badge>به زودی!</Badge></h1>
+          <h1 className='text-xl font-bold'>
+            ثبت‌نام در سایت <Badge>به زودی!</Badge>
+          </h1>
 
           <FieldDescription>
             <span>قبلاً حساب دارید؟ </span>
@@ -79,12 +81,20 @@ export default function RegisterPage() {
             )}
           />
 
-          <Field orientation="horizontal">
-            <Link to="/" className={buttonVariants({ variant: 'outline', class: 'flex-1' })}><ArrowLeftIcon mirrored /></Link>
+          <Field orientation='horizontal'>
+            <Link
+              to='/'
+              className={buttonVariants({
+                variant: 'outline',
+                class: 'flex-1',
+              })}
+            >
+              <ArrowLeftIcon mirrored />
+            </Link>
 
             <form.SimpleSubmitBtn
               disabled
-              className={buttonVariants({ class: "flex-2" })}
+              className={buttonVariants({ class: 'flex-2' })}
               icon={UserPlusIcon}
               title='ثبت‌نام'
             />

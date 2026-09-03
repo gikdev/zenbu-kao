@@ -1,0 +1,382 @@
+openapi: 3.1.1
+info:
+  title: Zenbu API
+  description: The backend of the 'Zenbu' app.
+  contact:
+    name: Mohammad Mahdi Bahrami
+    url: https://github.com/gikdev
+  version: 1.0.0
+servers:
+  - url: http://znb.chbkn.dev/
+paths:
+  /api/welcome:
+    get:
+      tags:
+        - Temp
+      summary: Get welcome
+      operationId: Welcome
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WelcomeResponse"
+  /api/identity/register:
+    post:
+      tags:
+        - Identity
+      summary: Register a new user
+      operationId: Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/HttpValidationProblemDetails"
+  /api/identity/login:
+    post:
+      tags:
+        - Identity
+      summary: Login with email and password
+      operationId: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/HttpValidationProblemDetails"
+        "401":
+          description: Unauthorized
+  /api/identity/refresh:
+    post:
+      tags:
+        - Identity
+      summary: Refresh an expired access token
+      operationId: RefreshToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RefreshTokenCommand"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+        "401":
+          description: Unauthorized
+  /api/jot/jottings:
+    get:
+      tags:
+        - Jottings
+      summary: Get all jottings
+      operationId: GetAllJottings
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/JottingResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+    post:
+      tags:
+        - Jottings
+      summary: Create a new jotting
+      operationId: CreateJotting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateJottingCommand"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JottingResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/HttpValidationProblemDetails"
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+  /api/jot/jottings/{id}:
+    put:
+      tags:
+        - Jottings
+      summary: Update an existing jotting
+      operationId: UpdateJotting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateJottingRequest"
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/HttpValidationProblemDetails"
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        "404":
+          description: Not Found
+    delete:
+      tags:
+        - Jottings
+      summary: Delete a jotting
+      operationId: DeleteJotting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetails"
+        "404":
+          description: Not Found
+components:
+  schemas:
+    CreateJottingCommand:
+      required:
+        - title
+        - content
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+            - "null"
+            - string
+        title:
+          type:
+            - "null"
+            - string
+        status:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+            - "null"
+            - integer
+            - string
+          format: int32
+        detail:
+          type:
+            - "null"
+            - string
+        instance:
+          type:
+            - "null"
+            - string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    JottingResponse:
+      required:
+        - id
+        - title
+        - content
+        - updatedAt
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        content:
+          type: string
+        updatedAt:
+          type:
+            - "null"
+            - string
+          format: date-time
+    LoginCommand:
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+            - "null"
+            - string
+        title:
+          type:
+            - "null"
+            - string
+        status:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+            - "null"
+            - integer
+            - string
+          format: int32
+        detail:
+          type:
+            - "null"
+            - string
+        instance:
+          type:
+            - "null"
+            - string
+    RefreshTokenCommand:
+      required:
+        - accessToken
+        - refreshToken
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+    RegisterCommand:
+      required:
+        - fullName
+        - displayName
+        - userName
+        - email
+        - password
+        - confirmPassword
+      type: object
+      properties:
+        fullName:
+          type:
+            - "null"
+            - string
+        displayName:
+          type:
+            - "null"
+            - string
+        userName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confirmPassword:
+          type: string
+    TokenResponse:
+      required:
+        - accessToken
+        - refreshToken
+        - expiresAt
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+    UpdateJottingRequest:
+      required:
+        - title
+        - content
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+    WelcomeResponse:
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          type: string
+  securitySchemes:
+    Bearer:
+      type: http
+      description: Enter your JWT token
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - {}
+tags:
+  - name: Temp
+  - name: Identity
+  - name: Jottings

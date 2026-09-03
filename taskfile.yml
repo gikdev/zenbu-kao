@@ -7,11 +7,10 @@ tasks:
   i: npm install
   t: npm run tsc -- -b
   d: npm run dev
-  c: npm run check -- --fix
-  f: npm run format -- --fix
+  c: npm run biome -- check --fix
+  f: npm run biome -- format --fix
   r: npm run generate-routes
   p: npm run build
   z: git archive --format=zip --output=repo.zip HEAD
-
-  # AddShadcnComponent
   a: npm run shadcn -- add {{.CLI_ARGS}}
+  g: npm run openapi-ts

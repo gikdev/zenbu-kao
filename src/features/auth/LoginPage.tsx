@@ -2,11 +2,11 @@
 
 import { ArrowLeftIcon, SignInIcon } from '@phosphor-icons/react'
 import { Link } from '@tanstack/react-router'
+import { Badge } from '#/common/ui/badge'
 import { buttonVariants } from '#/common/ui/button'
 import { Field, FieldDescription } from '#/common/ui/field'
 import { useAppForm } from '../forms'
 import { Agreement } from './Agreement'
-import { Badge } from '#/common/ui/badge'
 
 export default function LoginPage() {
   const form = useAppForm({
@@ -26,7 +26,9 @@ export default function LoginPage() {
         <form.AppForm>
           <SignInIcon className='size-6' />
 
-          <h1 className='text-xl font-bold'>ورود به سایت <Badge>به زودی!</Badge></h1>
+          <h1 className='text-xl font-bold'>
+            ورود به سایت <Badge>به زودی!</Badge>
+          </h1>
 
           <FieldDescription>
             <span>حساب نداری؟ </span>
@@ -47,12 +49,20 @@ export default function LoginPage() {
             )}
           />
 
-          <Field orientation="horizontal">
-            <Link to="/" className={buttonVariants({ variant: 'outline', class: 'flex-1' })}><ArrowLeftIcon mirrored /></Link>
+          <Field orientation='horizontal'>
+            <Link
+              to='/'
+              className={buttonVariants({
+                variant: 'outline',
+                class: 'flex-1',
+              })}
+            >
+              <ArrowLeftIcon mirrored />
+            </Link>
 
             <form.SimpleSubmitBtn
               disabled
-              className={buttonVariants({ class: "flex-2" })}
+              className={buttonVariants({ class: 'flex-2' })}
               icon={SignInIcon}
               title='ورود'
             />
