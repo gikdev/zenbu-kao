@@ -5,12 +5,12 @@ import { Link, useNavigate } from '@tanstack/react-router'
 import { Badge } from '#/common/ui/badge'
 import { buttonVariants } from '#/common/ui/button'
 import { Field, FieldDescription } from '#/common/ui/field'
+import { toast } from '#/common/ui/toast'
+import { extractErrorMessage } from '#/common/utils/extractErrorMessage'
+import { login } from '../api/client'
 import { useAppForm } from '../forms'
 import { Agreement } from './Agreement'
-import { login } from '../api/client'
 import { authStore } from './store'
-import { extractErrorMessage } from '#/common/utils/extractErrorMessage'
-import { toast } from '#/common/ui/toast'
 
 export default function LoginPage() {
   const navigate = useNavigate()
@@ -31,9 +31,9 @@ export default function LoginPage() {
       }
 
       toast.add({
-        type: "error",
+        type: 'error',
         description: extractErrorMessage(res.error),
-        priority: "high",
+        priority: 'high',
       })
     },
   })

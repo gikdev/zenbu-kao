@@ -14,3 +14,6 @@ tasks:
   z: git archive --format=zip --output=repo.zip HEAD
   a: npm run shadcn -- add {{.CLI_ARGS}}
   g: npm run openapi-ts
+  sync:
+    dotenv: ['.env.development']
+    cmd: curl -k {{.VITE_API_BASE_URL}}/openapi.yml -o ./src/features/api/openapi.yml

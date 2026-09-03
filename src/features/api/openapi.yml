@@ -1,4 +1,4 @@
-openapi: 3.1.1
+openapi: '3.1.1'
 info:
   title: Zenbu API
   description: The backend of the 'Zenbu' app.
@@ -7,7 +7,7 @@ info:
     url: https://github.com/gikdev
   version: 1.0.0
 servers:
-  - url: http://znb.chbkn.dev/
+  - url: https://localhost:7200/
 paths:
   /api/welcome:
     get:
@@ -16,12 +16,12 @@ paths:
       summary: Get welcome
       operationId: Welcome
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/WelcomeResponse"
+                $ref: '#/components/schemas/WelcomeResponse'
   /api/identity/register:
     post:
       tags:
@@ -32,17 +32,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RegisterCommand"
+              $ref: '#/components/schemas/RegisterCommand'
         required: true
       responses:
-        "200":
+        '200':
           description: OK
-        "400":
+        '400':
           description: Bad Request
           content:
             application/problem+json:
               schema:
-                $ref: "#/components/schemas/HttpValidationProblemDetails"
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
   /api/identity/login:
     post:
       tags:
@@ -53,22 +53,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/LoginCommand"
+              $ref: '#/components/schemas/LoginCommand'
         required: true
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TokenResponse"
-        "400":
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
           description: Bad Request
           content:
             application/problem+json:
               schema:
-                $ref: "#/components/schemas/HttpValidationProblemDetails"
-        "401":
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '401':
           description: Unauthorized
   /api/identity/refresh:
     post:
@@ -80,16 +80,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RefreshTokenCommand"
+              $ref: '#/components/schemas/RefreshTokenCommand'
         required: true
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TokenResponse"
-        "401":
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
           description: Unauthorized
   /api/jot/jottings:
     get:
@@ -98,20 +98,20 @@ paths:
       summary: Get all jottings
       operationId: GetAllJottings
       responses:
-        "200":
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/JottingResponse"
-        "401":
-          description: Unauthorized
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/ProblemDetails"
+                  $ref: '#/components/schemas/JottingResponse'
     post:
       tags:
         - Jottings
@@ -121,28 +121,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateJottingCommand"
+              $ref: '#/components/schemas/CreateJottingCommand'
         required: true
       responses:
-        "201":
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/JottingResponse"
-        "400":
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/HttpValidationProblemDetails"
-        "401":
+        '401':
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: "#/components/schemas/ProblemDetails"
-  /api/jot/jottings/{id}:
+                $ref: '#/components/schemas/ProblemDetails'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JottingResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  '/api/jot/jottings/{id}':
     put:
       tags:
         - Jottings
@@ -159,24 +159,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UpdateJottingRequest"
+              $ref: '#/components/schemas/UpdateJottingRequest'
         required: true
       responses:
-        "204":
-          description: No Content
-        "400":
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: "#/components/schemas/HttpValidationProblemDetails"
-        "401":
+        '401':
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: "#/components/schemas/ProblemDetails"
-        "404":
+                $ref: '#/components/schemas/ProblemDetails'
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
           description: Not Found
     delete:
       tags:
@@ -191,15 +191,15 @@ paths:
             type: string
             format: uuid
       responses:
-        "204":
-          description: No Content
-        "401":
+        '401':
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: "#/components/schemas/ProblemDetails"
-        "404":
+                $ref: '#/components/schemas/ProblemDetails'
+        '204':
+          description: No Content
+        '404':
           description: Not Found
 components:
   schemas:
@@ -218,26 +218,26 @@ components:
       properties:
         type:
           type:
-            - "null"
+            - 'null'
             - string
         title:
           type:
-            - "null"
+            - 'null'
             - string
         status:
-          pattern: ^-?(?:0|[1-9]\d*)$
+          pattern: '^-?(?:0|[1-9]\d*)$'
           type:
-            - "null"
+            - 'null'
             - integer
             - string
           format: int32
         detail:
           type:
-            - "null"
+            - 'null'
             - string
         instance:
           type:
-            - "null"
+            - 'null'
             - string
         errors:
           type: object
@@ -262,7 +262,7 @@ components:
           type: string
         updatedAt:
           type:
-            - "null"
+            - 'null'
             - string
           format: date-time
     LoginCommand:
@@ -280,26 +280,26 @@ components:
       properties:
         type:
           type:
-            - "null"
+            - 'null'
             - string
         title:
           type:
-            - "null"
+            - 'null'
             - string
         status:
-          pattern: ^-?(?:0|[1-9]\d*)$
+          pattern: '^-?(?:0|[1-9]\d*)$'
           type:
-            - "null"
+            - 'null'
             - integer
             - string
           format: int32
         detail:
           type:
-            - "null"
+            - 'null'
             - string
         instance:
           type:
-            - "null"
+            - 'null'
             - string
     RefreshTokenCommand:
       required:
@@ -323,11 +323,11 @@ components:
       properties:
         fullName:
           type:
-            - "null"
+            - 'null'
             - string
         displayName:
           type:
-            - "null"
+            - 'null'
             - string
         userName:
           type: string
@@ -375,7 +375,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
 security:
-  - {}
+  - { }
 tags:
   - name: Temp
   - name: Identity

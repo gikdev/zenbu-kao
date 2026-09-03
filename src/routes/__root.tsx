@@ -6,10 +6,10 @@ import {
 } from '@tanstack/react-router'
 import type { PropsWithChildren } from 'react'
 import appCss from '#/common/styles.css?url'
+import { Toaster } from '#/common/ui/toast'
 import { TooltipProvider } from '#/common/ui/tooltip'
 import { ClientConfigurator } from '#/features/api/ClientConfigurator'
 import { Devtools } from '#/features/devtools/Devtools'
-import { Toaster } from '#/common/ui/toast'
 
 interface MyRouterContext {
   queryClient: QueryClient

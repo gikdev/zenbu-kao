@@ -5,11 +5,11 @@ import { Link, useNavigate } from '@tanstack/react-router'
 import { Badge } from '#/common/ui/badge'
 import { buttonVariants } from '#/common/ui/button'
 import { Field, FieldDescription } from '#/common/ui/field'
-import { useAppForm } from '../forms'
-import { Agreement } from './Agreement'
-import { register } from '../api/client'
 import { toast } from '#/common/ui/toast'
 import { extractErrorMessage } from '#/common/utils/extractErrorMessage'
+import { register } from '../api/client'
+import { useAppForm } from '../forms'
+import { Agreement } from './Agreement'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
@@ -27,8 +27,8 @@ export default function RegisterPage() {
 
       if (res.data) {
         toast.add({
-          type: "success",
-          description: "با موفقیت ثبت‌نام کردین. حالا لطفا وارد بشین.",
+          type: 'success',
+          description: 'با موفقیت ثبت‌نام کردین. حالا لطفا وارد بشین.',
         })
         form.reset()
         void navigate({ to: '/login' })
@@ -36,9 +36,9 @@ export default function RegisterPage() {
       }
 
       toast.add({
-        type: "error",
+        type: 'error',
         description: extractErrorMessage(res.error),
-        priority: "high",
+        priority: 'high',
       })
     },
   })
