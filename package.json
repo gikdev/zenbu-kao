@@ -14,6 +14,7 @@
     "vite": "vite",
     "shadcn": "shadcn",
     "openapi-ts": "openapi-ts",
+    "prepare": "openapi-ts",
     "start": "node .output/server/index.mjs"
   },
   "dependencies": {
