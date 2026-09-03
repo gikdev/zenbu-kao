@@ -2,9 +2,11 @@
 
 import { PencilSimpleIcon, TrashSimpleIcon } from '@phosphor-icons/react'
 import { type FocusEvent, useState } from 'react'
+import { RenderTooltip } from '#/common/helpers/RenderTooltip'
 import { Button } from '#/common/ui/button'
 import { Input } from '#/common/ui/input'
 import { cn } from '#/common/utils'
+import { DestructiveBtn } from './DestructiveBtn'
 import { actions, useViewSubject } from './store'
 
 export const Subject = () => {
@@ -32,19 +34,23 @@ export const Subject = () => {
     />
   ) : (
     <div className='flex items-center gap-2'>
-      <Button
-        size='icon-lg'
-        variant='ghost'
+      <DestructiveBtn
+        disabled={!hasSubject}
+        defaultVariant='ghost'
+        icon={TrashSimpleIcon}
         onClick={() => actions.setSubject('')}
-      >
-        <TrashSimpleIcon className='size-6' />
-      </Button>
+        size='icon-lg'
+        iconSize='size-6'
+        title='حذف'
+      />
 
       <p className={subjectClass}>{subject || placeholder}</p>
 
-      <Button size='icon-lg' variant='ghost' onClick={() => setEditing(true)}>
-        <PencilSimpleIcon className='size-6' />
-      </Button>
+      <RenderTooltip tooltip='ویرایش'>
+        <Button size='icon-lg' variant='ghost' onClick={() => setEditing(true)}>
+          <PencilSimpleIcon className='size-6' />
+        </Button>
+      </RenderTooltip>
     </div>
   )
 }

@@ -21,7 +21,7 @@ export const cardItems: CardItem[] = [
     SquaresFourIcon,
     'برنامک‌ها',
     'برنامه‌ها و ابزارهای کاربردی',
-    null,
+    linkOptions({ to: '/apps' }),
   ),
   new CardItem(PenNibIcon, 'بلاگ', 'نوشته‌ها، آموزش‌ها، و مقالات', null),
   new CardItem(WrenchIcon, 'خدمات', 'چیزهایی که ارائه میدم', null),
