@@ -1,14 +1,18 @@
 // biome-ignore-all lint/correctness/noChildrenProp: <reason for disabling>
 
 import { ArrowLeftIcon, UserPlusIcon } from '@phosphor-icons/react'
-import { Link } from '@tanstack/react-router'
+import { Link, useNavigate } from '@tanstack/react-router'
 import { Badge } from '#/common/ui/badge'
 import { buttonVariants } from '#/common/ui/button'
 import { Field, FieldDescription } from '#/common/ui/field'
 import { useAppForm } from '../forms'
 import { Agreement } from './Agreement'
+import { register } from '../api/client'
+import { toast } from '#/common/ui/toast'
+import { extractErrorMessage } from '#/common/utils/extractErrorMessage'
 
 export default function RegisterPage() {
+  const navigate = useNavigate()
   const form = useAppForm({
     defaultValues: {
       email: '',
@@ -18,9 +22,24 @@ export default function RegisterPage() {
       displayName: '',
       fullName: '',
     },
-    async onSubmit(props) {
-      // TODO: for now...
-      console.log(props.value)
+    async onSubmit(p) {
+      const res = await register({ registerCommand: p.value })
+
+      if (res.data) {
+        toast.add({
+          type: "success",
+          description: "با موفقیت ثبت‌نام کردین. حالا لطفا وارد بشین.",
+        })
+        form.reset()
+        void navigate({ to: '/login' })
+        return
+      }
+
+      toast.add({
+        type: "error",
+        description: extractErrorMessage(res.error),
+        priority: "high",
+      })
     },
   })
 

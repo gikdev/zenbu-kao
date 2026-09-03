@@ -7,7 +7,9 @@ import {
 import type { PropsWithChildren } from 'react'
 import appCss from '#/common/styles.css?url'
 import { TooltipProvider } from '#/common/ui/tooltip'
+import { ClientConfigurator } from '#/features/api/ClientConfigurator'
 import { Devtools } from '#/features/devtools/Devtools'
+import { Toaster } from '#/common/ui/toast'
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -36,8 +38,10 @@ function RootDocument(p: PropsWithChildren) {
       </head>
 
       <body>
+        <ClientConfigurator />
         <TooltipProvider>{p.children}</TooltipProvider>
         <Devtools />
+        <Toaster />
         <Scripts />
       </body>
     </html>

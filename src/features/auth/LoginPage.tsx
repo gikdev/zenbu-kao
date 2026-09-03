@@ -1,22 +1,40 @@
 // biome-ignore-all lint/correctness/noChildrenProp: <reason for disabling>
 
 import { ArrowLeftIcon, SignInIcon } from '@phosphor-icons/react'
-import { Link } from '@tanstack/react-router'
+import { Link, useNavigate } from '@tanstack/react-router'
 import { Badge } from '#/common/ui/badge'
 import { buttonVariants } from '#/common/ui/button'
 import { Field, FieldDescription } from '#/common/ui/field'
 import { useAppForm } from '../forms'
 import { Agreement } from './Agreement'
+import { login } from '../api/client'
+import { authStore } from './store'
+import { extractErrorMessage } from '#/common/utils/extractErrorMessage'
+import { toast } from '#/common/ui/toast'
 
 export default function LoginPage() {
+  const navigate = useNavigate()
+
   const form = useAppForm({
     defaultValues: {
       email: '',
       password: '',
     },
-    async onSubmit(props) {
-      // TODO: for now...
-      console.log(props.value)
+    async onSubmit(p) {
+      const res = await login({ loginCommand: p.value })
+
+      if (res.data) {
+        authStore.actions.logIn(res.data)
+        form.reset()
+        void navigate({ to: '/' })
+        return
+      }
+
+      toast.add({
+        type: "error",
+        description: extractErrorMessage(res.error),
+        priority: "high",
+      })
     },
   })
 
@@ -61,7 +79,7 @@ export default function LoginPage() {
             </Link>
 
             <form.SimpleSubmitBtn
-              disabled
+              // disabled
               className={buttonVariants({ class: 'flex-2' })}
               icon={SignInIcon}
               title='ورود'

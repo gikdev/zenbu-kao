@@ -38,7 +38,9 @@ export function extractErrorMessage(error: any, fallback?: string): string {
 
   // 3) Fallback to normal error.message (e.g., JS errors, Axios errors, etc.)
   if (error?.message) return error.message
+  if (error?.detail) return error.detail
+  if (error?.title) return error.title
 
   // 4) Final fallback
-  return fallback || 'An unexpected error occurred.'
+  return fallback || 'یه مشکلی پیش اومد.'
 }
