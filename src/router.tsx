@@ -2,11 +2,12 @@ import { createRouter as createTanStackRouter } from '@tanstack/react-router'
 import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query'
 import { queryClient } from './features/api/queryClient'
 import { routeTree } from './routeTree.gen'
+import { getIsLoggedIn } from './features/auth/store'
 
 export function getRouter() {
   const router = createTanStackRouter({
     routeTree,
-    context: { queryClient },
+    context: { queryClient, getIsLoggedIn },
     scrollRestoration: true,
     defaultPreload: 'intent',
     defaultPreloadStaleTime: 0,

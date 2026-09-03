@@ -50,7 +50,7 @@ export default function RegisterPage() {
           <UserPlusIcon className='size-6' />
 
           <h1 className='text-xl font-bold'>
-            ثبت‌نام در سایت <Badge>به زودی!</Badge>
+            ثبت‌نام در سایت
           </h1>
 
           <FieldDescription>
@@ -112,7 +112,6 @@ export default function RegisterPage() {
             </Link>
 
             <form.SimpleSubmitBtn
-              disabled
               className={buttonVariants({ class: 'flex-2' })}
               icon={UserPlusIcon}
               title='ثبت‌نام'

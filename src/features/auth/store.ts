@@ -41,6 +41,7 @@ authStore.subscribe(() => {
   }
 })
 
+export const getIsLoggedIn = () => authStore.get().tokens != null
 export const useIsLoggedIn = () => useSelector(authStore, s => s.tokens != null)
 export const useAccessToken = () =>
   useSelector(authStore, s => s.tokens?.accessToken ?? null)

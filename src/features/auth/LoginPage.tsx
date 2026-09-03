@@ -45,7 +45,7 @@ export default function LoginPage() {
           <SignInIcon className='size-6' />
 
           <h1 className='text-xl font-bold'>
-            ورود به سایت <Badge>به زودی!</Badge>
+            ورود به سایت
           </h1>
 
           <FieldDescription>
@@ -79,7 +79,6 @@ export default function LoginPage() {
             </Link>
 
             <form.SimpleSubmitBtn
-              // disabled
               className={buttonVariants({ class: 'flex-2' })}
               icon={SignInIcon}
               title='ورود'

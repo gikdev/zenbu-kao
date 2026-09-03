@@ -10,9 +10,11 @@ import { Toaster } from '#/common/ui/toast'
 import { TooltipProvider } from '#/common/ui/tooltip'
 import { ClientConfigurator } from '#/features/api/ClientConfigurator'
 import { Devtools } from '#/features/devtools/Devtools'
+import type { getIsLoggedIn } from '#/features/auth/store'
 
 interface MyRouterContext {
   queryClient: QueryClient
+  getIsLoggedIn: typeof getIsLoggedIn
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
