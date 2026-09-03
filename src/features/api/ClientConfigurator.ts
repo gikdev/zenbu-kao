@@ -14,7 +14,7 @@ export const ClientConfigurator = () => {
   useEffect(() => {
     client.setConfig({
       baseUrl: API_BASE_URL,
-      throwOnError: false,
+      // throwOnError: false,
       auth: () => accessToken || undefined,
     })
   }, [accessToken])

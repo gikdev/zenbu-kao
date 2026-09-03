@@ -22,7 +22,7 @@ export default function RegisterPage() {
       fullName: '',
     },
     async onSubmit(p) {
-      const res = await register({ registerCommand: p.value })
+      const res = await register({ body: p.value })
 
       if (res.data) {
         toast.add({

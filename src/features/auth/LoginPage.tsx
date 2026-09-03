@@ -20,7 +20,7 @@ export default function LoginPage() {
       password: '',
     },
     async onSubmit(p) {
-      const res = await login({ loginCommand: p.value })
+      const res = await login({ body: p.value })
 
       if (res.data) {
         authStore.actions.logIn(res.data)
