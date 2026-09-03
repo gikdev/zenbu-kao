@@ -17,6 +17,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AppsIndexRouteImport } from './routes/apps/index'
+import { Route as AppsAzkhakRouteImport } from './routes/apps/azkhak'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 
 const IndexRoute = IndexRouteImport.update({
@@ -59,6 +60,11 @@ const AppsIndexRoute = AppsIndexRouteImport.update({
   path: '/apps/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppsAzkhakRoute = AppsAzkhakRouteImport.update({
+  id: '/apps/azkhak',
+  path: '/apps/azkhak',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/dashboard/',
   path: '/dashboard/',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
+  '/apps/azkhak': typeof AppsAzkhakRoute
   '/apps/': typeof AppsIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
+  '/apps/azkhak': typeof AppsAzkhakRoute
   '/apps': typeof AppsIndexRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/register': typeof RegisterRoute
   '/terms': typeof TermsRoute
+  '/apps/azkhak': typeof AppsAzkhakRoute
   '/apps/': typeof AppsIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/register'
     | '/terms'
+    | '/apps/azkhak'
     | '/apps/'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/register'
     | '/terms'
+    | '/apps/azkhak'
     | '/apps'
     | '/dashboard'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/register'
     | '/terms'
+    | '/apps/azkhak'
     | '/apps/'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   RegisterRoute: typeof RegisterRoute
   TermsRoute: typeof TermsRoute
+  AppsAzkhakRoute: typeof AppsAzkhakRoute
   AppsIndexRoute: typeof AppsIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apps/azkhak': {
+      id: '/apps/azkhak'
+      path: '/apps/azkhak'
+      fullPath: '/apps/azkhak'
+      preLoaderRoute: typeof AppsAzkhakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/': {
       id: '/dashboard/'
       path: '/dashboard'
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   RegisterRoute: RegisterRoute,
   TermsRoute: TermsRoute,
+  AppsAzkhakRoute: AppsAzkhakRoute,
   AppsIndexRoute: AppsIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
