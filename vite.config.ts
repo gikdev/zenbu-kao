@@ -17,7 +17,20 @@ const config = defineConfig({
         crawlLinks: true,
       },
     }),
-    nitro(),
+    nitro({
+      prerender: {
+        routes: ['/'],
+        ignore: [
+          '/apps/**',
+          '/dashboard/**',
+          '/contact',
+          '/login',
+          '/register',
+          '/privacy',
+          '/terms',
+        ],
+      },
+    }),
     viteReact(),
   ],
 })

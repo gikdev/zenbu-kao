@@ -1,5 +1,6 @@
 import type { QueryClient } from '@tanstack/react-query'
 import {
+  ClientOnly,
   createRootRouteWithContext,
   HeadContent,
   Scripts,
@@ -40,10 +41,12 @@ function RootDocument(p: PropsWithChildren) {
       </head>
 
       <body>
-        <ClientConfigurator />
         <TooltipProvider>{p.children}</TooltipProvider>
-        <Devtools />
-        <Toaster />
+        <ClientOnly>
+          <ClientConfigurator />
+          <Devtools />
+          <Toaster />
+        </ClientOnly>
         <Scripts />
       </body>
     </html>
