@@ -1,6 +1,7 @@
 /** biome-ignore-all lint/a11y/noAutofocus: None of ur business! */
 
 import { PencilSimpleIcon, TrashSimpleIcon } from '@phosphor-icons/react'
+import { useHotkey } from '@tanstack/react-hotkeys'
 import { type FocusEvent, useState } from 'react'
 import { RenderTooltip } from '#/common/helpers/RenderTooltip'
 import { Button } from '#/common/ui/button'
@@ -19,10 +20,14 @@ export const FocusSubject = () => {
     hasSubject ? 'font-bold text-foreground' : 'text-muted-foreground italic',
   )
 
+  const startEditing = () => setEditing(true)
+
   const handleEditing = (e: FocusEvent<HTMLInputElement, Element>) => {
     azkhakActions.setSubject(e.target.value)
     setEditing(false)
   }
+
+  useHotkey('E', startEditing, { meta: { name: 'ویرایش موضوع تمرکز' } })
 
   return isEditing ? (
     <Input
@@ -47,7 +52,7 @@ export const FocusSubject = () => {
       <p className={subjectClass}>{subject || placeholder}</p>
 
       <RenderTooltip tooltip='ویرایش'>
-        <Button size='icon-lg' variant='ghost' onClick={() => setEditing(true)}>
+        <Button size='icon-lg' variant='ghost' onClick={startEditing}>
           <PencilSimpleIcon className='size-6' />
         </Button>
       </RenderTooltip>

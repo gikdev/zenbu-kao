@@ -2,6 +2,7 @@ import { ArrowUpIcon } from '@phosphor-icons/react'
 import { Link } from '@tanstack/react-router'
 import { buttonVariants } from '#/common/ui/button'
 import { AzkhakCard } from './AzkhakCard'
+import { KeyboardShortcutsGuideDialog } from './KeyboardShortcutsGuideDialog'
 import { useFavicon } from './useFavicon'
 
 export function AzkhakPage() {
@@ -9,16 +10,27 @@ export function AzkhakPage() {
 
   return (
     <div className='flex min-h-svh flex-col items-center justify-center gap-2 bg-background p-4 md:p-8 relative'>
-      <Link
-        to='/apps'
-        className={buttonVariants({
-          size: 'icon',
-          variant: 'outline',
-          class: 'absolute top-4 inset-s-4',
-        })}
-      >
-        <ArrowUpIcon />
-      </Link>
+      <div className='absolute top-4 inset-s-4'>
+        <Link
+          to='/apps'
+          className={buttonVariants({
+            size: 'icon',
+            variant: 'outline',
+          })}
+        >
+          <ArrowUpIcon />
+        </Link>
+      </div>
+
+      <div className='absolute top-4 inset-s-1/2 flex gap-2 items-center translate-x-1/2'>
+        <img alt='' src='/apps/Azkhak.png' className='size-8' />
+
+        <span className='font-bold'>ازخک</span>
+      </div>
+
+      <div className='absolute top-4 inset-e-4'>
+        <KeyboardShortcutsGuideDialog />
+      </div>
 
       <AzkhakCard />
     </div>

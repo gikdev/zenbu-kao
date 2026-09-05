@@ -1,4 +1,5 @@
 import { PauseIcon, PlayIcon } from '@phosphor-icons/react'
+import { useHotkey } from '@tanstack/react-hotkeys'
 import { RenderTooltip } from '#/common/helpers/RenderTooltip'
 import { Button } from '#/common/ui/button'
 import { cn } from '#/common/utils'
@@ -18,6 +19,8 @@ export const PlayPauseBtn = () => {
       azkhakActions.startTimer()
     }
   }
+
+  useHotkey('Space', handlePlayPause, { meta: { name: 'شروع/توقف تایمر' } })
 
   return (
     <RenderTooltip tooltip={playPauseTooltip}>

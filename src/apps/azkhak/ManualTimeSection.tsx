@@ -1,4 +1,5 @@
 import { MinusIcon, PlusIcon, XIcon } from '@phosphor-icons/react'
+import { useHotkey } from '@tanstack/react-hotkeys'
 import { useRef } from 'react'
 import { RenderTooltip } from '#/common/helpers/RenderTooltip'
 import { useIsMobile } from '#/common/helpers/useIsMobile'
@@ -19,11 +20,14 @@ import { azkhakActions } from './store'
 
 export function ManualTimeSection() {
   const TITLE = 'زمان دستی'
+  const openBtnRef = useRef<HTMLButtonElement>(null)
   const closeBtnRef = useRef<HTMLButtonElement>(null)
   const minutesInputRef = useRef<HTMLInputElement>(null)
   const swipeDirection = useIsMobile() ? 'down' : 'left'
 
   const quickNumbers = [1, 2, 3, 5, 10, 15, 20, 25, 30, 40, 45, 60]
+
+  const clickOpenBtn = () => openBtnRef.current?.click()
 
   const add = (isPositive: boolean) => () => {
     const num = minutesInputRef.current?.valueAsNumber || 0
@@ -39,12 +43,28 @@ export function ManualTimeSection() {
     minutesInputRef.current.value = num.toString()
   }
 
+  useHotkey('M', clickOpenBtn, {
+    meta: { name: TITLE, description: `بخش ${TITLE} رو باز کن یا ببند.` },
+  })
+  useHotkey('A', add(true), {
+    meta: {
+      name: 'دقیقه اضافه کن',
+      description: `دقیقه‌ی واردشده توی بخش ${TITLE} رو اضافه کن.`,
+    },
+  })
+  useHotkey('S', add(false), {
+    meta: {
+      name: 'دقیقه کم کن',
+      description: `دقیقه‌ی واردشده توی بخش ${TITLE} رو کم کن.`,
+    },
+  })
+
   return (
     <Drawer showSwipeHandle swipeDirection={swipeDirection}>
       <RenderTooltip tooltip={TITLE}>
         <DrawerTrigger
           render={
-            <Button variant='outline' size='icon-huge'>
+            <Button variant='outline' size='icon-huge' ref={openBtnRef}>
               <PlusIcon className='size-8' />
             </Button>
           }

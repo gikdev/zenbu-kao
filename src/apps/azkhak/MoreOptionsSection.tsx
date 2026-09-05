@@ -1,4 +1,5 @@
 import { ArrowClockwiseIcon, ListIcon, XIcon } from '@phosphor-icons/react'
+import { useHotkey } from '@tanstack/react-hotkeys'
 import { useRef } from 'react'
 import { RenderTooltip } from '#/common/helpers/RenderTooltip'
 import { useIsMobile } from '#/common/helpers/useIsMobile'
@@ -20,15 +21,22 @@ import { azkhakActions } from './store'
 
 export const MoreOptionsSection = () => {
   const TITLE = 'گزینه‌های بیشتر'
+  const openBtnRef = useRef<HTMLButtonElement>(null)
   const closeBtnRef = useRef<HTMLButtonElement>(null)
   const swipeDirection = useIsMobile() ? 'down' : 'right'
+
+  const clickOpenBtn = () => openBtnRef.current?.click()
+
+  useHotkey('H', clickOpenBtn, {
+    meta: { name: TITLE, description: `بخش ${TITLE} رو باز کن یا ببند.` },
+  })
 
   return (
     <Drawer showSwipeHandle swipeDirection={swipeDirection}>
       <RenderTooltip tooltip={TITLE}>
         <DrawerTrigger
           render={
-            <Button variant='outline' size='icon-huge'>
+            <Button variant='outline' size='icon-huge' ref={openBtnRef}>
               <ListIcon className='size-8' />
             </Button>
           }
